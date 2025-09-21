@@ -1,9 +1,13 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import openai
+import os
 
 app = FastAPI()
-openai.api_key = "YOUR_OPENAI_API_KEY"
+# Read OpenAI API key from environment variable to avoid hardcoding secrets.
+openai.api_key = os.getenv("OPENAI_API_KEY")
+if not openai.api_key:
+    raise RuntimeError("OPENAI_API_KEY environment variable not set")
 
 class LessonRequest(BaseModel):
     topic: str
