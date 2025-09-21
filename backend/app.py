@@ -3,7 +3,7 @@ from pydantic import BaseModel
 import openai
 
 app = FastAPI()
-openai.api_key = "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"
+# openai.api_key = """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"""
 
 class LessonRequest(BaseModel):
     topic: str
